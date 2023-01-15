@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SECModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="energy_indicator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="consumption" Type="float" Nullable="false" />
+          <Property Name="id_house" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="house">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="id_organization" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="operational_indicator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="minConsReq" Type="float" Nullable="false" />
+          <Property Name="estimCons" Type="float" Nullable="false" />
+          <Property Name="id_house" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="organization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="surname_director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronimyc_director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="13" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronimyc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="post" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_organization" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__energy_in__id_ho__3B75D760">
+          <End Role="house" Type="Self.house" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="energy_indicator" Type="Self.energy_indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="house">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="energy_indicator">
+              <PropertyRef Name="id_house" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__house__id_organi__4D94879B">
+          <End Role="organization" Type="Self.organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="house" Type="Self.house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="organization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="house">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__operation__id_ho__3E52440B">
+          <End Role="house" Type="Self.house" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="operational_indicator" Type="Self.operational_indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="house">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="operational_indicator">
+              <PropertyRef Name="id_house" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__id_organi__4E88ABD4">
+          <End Role="organization" Type="Self.organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="organization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SECModelContainer">
+          <EntitySet Name="energy_indicator" EntityType="Self.energy_indicator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="house" EntityType="Self.house" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="operational_indicator" EntityType="Self.operational_indicator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="organization" EntityType="Self.organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__energy_in__id_ho__3B75D760" Association="Self.FK__energy_in__id_ho__3B75D760">
+            <End Role="house" EntitySet="house" />
+            <End Role="energy_indicator" EntitySet="energy_indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__house__id_organi__4D94879B" Association="Self.FK__house__id_organi__4D94879B">
+            <End Role="organization" EntitySet="organization" />
+            <End Role="house" EntitySet="house" />
+          </AssociationSet>
+          <AssociationSet Name="FK__operation__id_ho__3E52440B" Association="Self.FK__operation__id_ho__3E52440B">
+            <End Role="house" EntitySet="house" />
+            <End Role="operational_indicator" EntitySet="operational_indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__id_organi__4E88ABD4" Association="Self.FK__users__id_organi__4E88ABD4">
+            <End Role="organization" EntitySet="organization" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="energy_indicator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="consumption" Type="Double" Nullable="false" />
+          <Property Name="id_house" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="house" Relationship="Self.FK__energy_in__id_ho__3B75D760" FromRole="energy_indicator" ToRole="house" />
+        </EntityType>
+        <EntityType Name="house">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_organization" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="energy_indicator" Relationship="Self.FK__energy_in__id_ho__3B75D760" FromRole="house" ToRole="energy_indicator" />
+          <NavigationProperty Name="organization" Relationship="Self.FK__house__id_organi__4D94879B" FromRole="house" ToRole="organization" />
+          <NavigationProperty Name="operational_indicator" Relationship="Self.FK__operation__id_ho__3E52440B" FromRole="house" ToRole="operational_indicator" />
+        </EntityType>
+        <EntityType Name="operational_indicator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="minConsReq" Type="Double" Nullable="false" />
+          <Property Name="estimCons" Type="Double" Nullable="false" />
+          <Property Name="id_house" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="house" Relationship="Self.FK__operation__id_ho__3E52440B" FromRole="operational_indicator" ToRole="house" />
+        </EntityType>
+        <EntityType Name="organization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname_director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronimyc_director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="house" Relationship="Self.FK__house__id_organi__4D94879B" FromRole="organization" ToRole="house" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__id_organi__4E88ABD4" FromRole="organization" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_organization" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="organization" Relationship="Self.FK__users__id_organi__4E88ABD4" FromRole="users" ToRole="organization" />
+        </EntityType>
+        <Association Name="FK__energy_in__id_ho__3B75D760">
+          <End Role="house" Type="Self.house" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="energy_indicator" Type="Self.energy_indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="house">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="energy_indicator">
+              <PropertyRef Name="id_house" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__house__id_organi__4D94879B">
+          <End Role="organization" Type="Self.organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="house" Type="Self.house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="organization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="house">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__operation__id_ho__3E52440B">
+          <End Role="house" Type="Self.house" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="operational_indicator" Type="Self.operational_indicator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="house">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="operational_indicator">
+              <PropertyRef Name="id_house" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__id_organi__4E88ABD4">
+          <End Role="organization" Type="Self.organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="organization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SECEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="energy_indicator" EntityType="Self.energy_indicator" />
+          <EntitySet Name="house" EntityType="Self.house" />
+          <EntitySet Name="operational_indicator" EntityType="Self.operational_indicator" />
+          <EntitySet Name="organization" EntityType="Self.organization" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__energy_in__id_ho__3B75D760" Association="Self.FK__energy_in__id_ho__3B75D760">
+            <End Role="house" EntitySet="house" />
+            <End Role="energy_indicator" EntitySet="energy_indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__house__id_organi__4D94879B" Association="Self.FK__house__id_organi__4D94879B">
+            <End Role="organization" EntitySet="organization" />
+            <End Role="house" EntitySet="house" />
+          </AssociationSet>
+          <AssociationSet Name="FK__operation__id_ho__3E52440B" Association="Self.FK__operation__id_ho__3E52440B">
+            <End Role="house" EntitySet="house" />
+            <End Role="operational_indicator" EntitySet="operational_indicator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__id_organi__4E88ABD4" Association="Self.FK__users__id_organi__4E88ABD4">
+            <End Role="organization" EntitySet="organization" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SECModelContainer" CdmEntityContainer="SECEntities">
+          <EntitySetMapping Name="energy_indicator">
+            <EntityTypeMapping TypeName="SECModel.energy_indicator">
+              <MappingFragment StoreEntitySet="energy_indicator">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="consumption" ColumnName="consumption" />
+                <ScalarProperty Name="id_house" ColumnName="id_house" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="house">
+            <EntityTypeMapping TypeName="SECModel.house">
+              <MappingFragment StoreEntitySet="house">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="operational_indicator">
+            <EntityTypeMapping TypeName="SECModel.operational_indicator">
+              <MappingFragment StoreEntitySet="operational_indicator">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="minConsReq" ColumnName="minConsReq" />
+                <ScalarProperty Name="estimCons" ColumnName="estimCons" />
+                <ScalarProperty Name="id_house" ColumnName="id_house" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="organization">
+            <EntityTypeMapping TypeName="SECModel.organization">
+              <MappingFragment StoreEntitySet="organization">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="surname_director" ColumnName="surname_director" />
+                <ScalarProperty Name="name_director" ColumnName="name_director" />
+                <ScalarProperty Name="patronimyc_director" ColumnName="patronimyc_director" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SECModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
