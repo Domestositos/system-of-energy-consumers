@@ -10,9 +10,9 @@ using DAL.EF;
 
 namespace DAL.Repositories.Impl
 {
-    internal class OperationalIndicatorRepository : BaseRepository<OperationalIndicator>, IOperationalIndicatorRepository
+    public class OperationalIndicatorRepository : BaseRepository<OperationalIndicator>, IOperationalIndicatorRepository
     {
-        internal OperationalIndicatorRepository(UserContext context) : base(context)
+        public OperationalIndicatorRepository(UserContext context) : base(context)
         {
         }
     }

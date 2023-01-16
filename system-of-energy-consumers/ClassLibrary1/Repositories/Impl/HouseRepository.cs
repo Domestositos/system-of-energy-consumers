@@ -10,9 +10,9 @@ using DAL.EF;
 
 namespace DAL.Repositories.Impl
 {
-    internal class HouseRepository : BaseRepository<House>, IHouseRepository
+    public class HouseRepository : BaseRepository<House>, IHouseRepository
     {
-        internal HouseRepository(UserContext context) : base(context)
+        public HouseRepository(UserContext context) : base(context)
         {
         }
     }

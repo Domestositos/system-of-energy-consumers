@@ -10,9 +10,9 @@ using DAL.EF;
 
 namespace DAL.Repositories.Impl
 {
-    internal class EnergyIndicatorRepository : BaseRepository<EnergyIndicator>, IEnergyIndicatorRepository
+    public class EnergyIndicatorRepository : BaseRepository<EnergyIndicator>, IEnergyIndicatorRepository
     {
-        internal EnergyIndicatorRepository(UserContext context) : base(context)
+        public EnergyIndicatorRepository(UserContext context) : base(context)
         {
         }
     }
