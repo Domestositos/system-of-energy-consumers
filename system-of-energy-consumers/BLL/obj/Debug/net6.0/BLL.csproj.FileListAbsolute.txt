@@ -1,0 +1,17 @@
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.AssemblyInfo.cs
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\BLL.deps.json
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\BLL.dll
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\BLL.pdb
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\CCL.dll
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\DAL.dll
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\CCL.pdb
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\bin\Debug\net6.0\DAL.pdb
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.csproj.CopyComplete
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.dll
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\refint\BLL.dll
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\BLL.pdb
+C:\Users\Dima\Documents\GitHub\system-of-energy-consumers\system-of-energy-consumers\BLL\obj\Debug\net6.0\ref\BLL.dll
